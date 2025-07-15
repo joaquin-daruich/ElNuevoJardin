@@ -108,7 +108,7 @@ const [imagen , setImagen] = useState('')
           <>
     <div className='inicio'>
       <span>Te dejo un link para ver el video!, leyendo un poco la pagina te cuento un poco de que trata el video :) Tambien si queres hace click en Krillin y mira a 18 ;)  </span>
-      {<Link to={'https://drive.google.com/file/d/1ItsRRhb98HPBi0gMhTdzXOb8op76Ihm9/view?usp=drive_link'}>👉 Click aquí para ver el video!!Link directo sin publicidad!!!
+      {<Link to={'https://gofile.io/d/BfUUAD'}>👉 Click aquí para ver el video!!Link directo sin publicidad!!!
       </Link>}
       <span>                (audio latino!)Link al video directo!! </span>
     </div>
