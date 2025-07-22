@@ -1,11 +1,19 @@
-import React, { useEffect, useState, useRef  } from 'react';
+import { useEffect, useState, useRef  } from 'react';
 import './App.css'
-import { Link, Route, Routes, useParams } from 'react-router-dom';
+import { Link,  useParams } from 'react-router-dom';
 
 const Inicio = () => {
      
 const [androide , setAndroide] = useState('https://eljardindelh.netlify.app/es%20esta.png')
 const [krillin , setKrillin] = useState('https://eljardindelh.netlify.app/krillin-quieto.gif')
+const [esEntradaInteractiva, setEsEntradaInteractiva] = useState(false);
+
+useEffect(() => {
+  const titulo = document.title?.toLowerCase();
+  if (titulo?.includes('bulma hentai interactivo')) {
+    setEsEntradaInteractiva(true);
+  }
+}, []);
 
   const [bulma2Image, setBulma2Image] = useState('https://eljardindelh.netlify.app/bulma2.png');
   const [isBulmaVisible, setIsBulmaVisible] = useState(false); // Controlar si la imagen está visible
@@ -66,37 +74,211 @@ const bulmaHabla = () => {
   audio.play();
 }
 
-const onClikBulma = {
-  onClick : 'bulmaHabla()'
-}
- 
-
 
 
   const { segmento1, segmento2, segmento3 } = useParams();
   const slug = segmento3 || segmento2 || segmento1;
 
-const [imagen , setImagen] = useState('')
+  const [imagenBulma , setimagenBulma] = useState("/perfecta33.png")
+  const [transformarAVideo , setransformarAVideo] = useState(
+        <img className='bulma2' src={imagenBulma} alt="" />)
+  
+  const listaDePalabrasClaves = ['follada' , 'chupando polla(video)' , 'otro' , 'follada(video)', 'futanari' , 'futanari(video)' ,'otro(video)' , 'chupando polla' ]
+  
+  
+  const rangosPorPalabra = {
+    'follada': [21, 46],
+    'follada(video)': [6, 20],
+    'chupando polla': [1, 20],
+    'chupando polla(video)': [1,5],
+    'otro': [47, 67],
+    'otro(video)': [22, 24],
+    'futanari': [333, 338],
+    'futanari(video)': [333, 339],
+  };
+  
+  const [videOFoto,setVideOFoto] = useState('')
+  const [numerosUsados, setNumerosUsados] = useState({}); // en vez de array, un objeto
+  
+  const usarNumeroNoUsadoPorPalabra = (palabra, min, max) => {
+    const total = max - min + 1;
+    const usadosActuales = numerosUsados[palabra] || [];
+  
+    let usados = [...usadosActuales];
+  
+    // Reiniciar si ya se usaron todos
+    if (usados.length >= total) {
+      console.log(`Se usaron todos los números para "${palabra}", reiniciando.`);
+      usados = [];
+    }
+  
+    let numeroNuevo;
+    let intentos = 0;
+    do {
+      numeroNuevo = Math.floor(Math.random() * total) + min;
+      intentos++;
+      if (intentos > 100) {
+        console.warn("Demasiados intentos para generar número único.");
+        break;
+      }
+    } while (usados.includes(numeroNuevo));
+  
+    // Guardar el nuevo número como usado
+    usados.push(numeroNuevo);
+    setNumerosUsados(prev => ({ ...prev, [palabra]: usados }));
+  
+    return numeroNuevo;
+  };
+   
+  
+  const transformarImagen = (palabra , palabraAleatoria ) => {
+    if(listaDePalabrasClaves.includes(palabra)){
+      const [min, max] = rangosPorPalabra[palabra];
+        const numeroAleatorio = usarNumeroNoUsadoPorPalabra(palabra, min, max);
+  
+          videOFoto == '.mp4' ?
+        setransformarAVideo(
+          <video className='bulma2' src={palabra + numeroAleatorio + videOFoto} controls></video>
+        )
+        :
+        setransformarAVideo(
+          <img className='bulma2' src={palabra + numeroAleatorio + videOFoto} alt="" />
+        )
+      console.log(transformarAVideo)
+  
+      return
+    }
+    else{
+  
+   
+    const [min, max] = rangosPorPalabra[palabraAleatoria];
+    const numeroAleatorio = usarNumeroNoUsadoPorPalabra(palabraAleatoria, min, max);
+      videOFoto == '.mp4' ?
+        setransformarAVideo(
+          <video className='bulma2' src={palabraAleatoria + numeroAleatorio + videOFoto} controls></video>
+        )
+        :
+        setransformarAVideo(
+          <img className='bulma2' src={palabraAleatoria + numeroAleatorio + videOFoto} alt="" />
+        )
+     return
+    }
+  }
+  
+  const [textoInput , setTextoInput] = useState('')
+  
+  
+  const setearAmbos = ( palabra) => {
+  
+  
+    // excluir las chanchadas:
+    const listaSinGuarradas = []
+     for(let palabras of listaDePalabrasClaves){
+      if (palabras.includes('futanari')){
+        ''
+      } 
+      else{
+        listaSinGuarradas.push(palabras)
+      }
+    }
+  
+    // diferenciar entre video o imagen:
+    const soloPalabrasSinVideo = listaSinGuarradas.filter(p => !p.includes('(video)'))
+    const soloPalabrasConVideo = listaSinGuarradas.filter(p => p.includes('(video)'))
+  
+    // crear palabras aleatorias por las dudas
+    const palabraAleatoriaVideo  = soloPalabrasConVideo[
+    Math.floor(Math.random() * soloPalabrasConVideo.length)
+  ]
+    const palabraAleatoriaSinVideo  = soloPalabrasSinVideo[
+    Math.floor(Math.random() * soloPalabrasSinVideo.length)
+  ]
+  
+   
+  videOFoto == ".mp4" ?
+    transformarImagen(palabra , palabraAleatoriaVideo )
+    :
+    transformarImagen(palabra , palabraAleatoriaSinVideo)
+  }
+  
+  const cambiarimagen = (e) => {
+  const textoUsuario = e.toLowerCase()
+    textoUsuario.includes("(video)") ? 
+      setVideOFoto(".mp4")
+      :
+      setVideOFoto(".png")
+  setTextoInput(textoUsuario)
+  }
+  
+  
+   
+  
+  const mandarForm = (e) => {
+   e.preventDefault();
+  
+    // Guardar el prompt en Netlify Forms
+    const form = e.target;
+  
+    // Crear objeto con datos
+    const data = new FormData(form);
+  
+    fetch("/", {
+      method: "POST",
+      body: data,
+    })
+      .then(() => {
+        console.log("Prompt enviado a Netlify correctamente.");
+        setearAmbos(textoInput); // Ejecutar tu lógica de imagen
+      })
+      .catch((error) => alert(error));
+  
+  }
+     
 
 
-  // const buscarABulma = () => {
-  //   localStorage.setItem('bulmaSrc' , '')
-  //  const elementos = document.getElementsByClassName("bulma")
-  //  const bulmaSRC = localStorage.getItem('bulmaSrc')
-  //   !bulmaSRC ?
-  //       localStorage.setItem('bulmaSrc' , elementos[0])
-  //       :
-  //    bulmaSRC.src = "https://eljardindelh.netlify.app/bulma.png"
-  // };
+  if (slug && !esEntradaInteractiva) {
+  return (
+    <>
+    </>
+  );
+}
 
 
-  if (slug) {
+
+  if (slug && esEntradaInteractiva) {
 
 
     return (
       <>
     
+          <form name="promptForm" netlify hidden>
+        <input type="text" name="prompt" />
+      </form>
+   
+    <img className='ElJardinDelH' src="https://elnuevonuevojardin.netlify.app/jardin_procesado.jpg" alt="El Jardin Del H" />
+
+
+
+      <h1 className='parrafo'>Bulma</h1>
+<form
+  name="promptForm"
+  method="POST"
+  data-netlify="true"
+  onSubmit={mandarForm}
+>
+  <input type="hidden" name="form-name" value="promptForm" />
+  <input
+    placeholder="Escribí como la querés a bulma"
+    type="text"
+    name="prompt" // 👈 Esto es lo que se va a guardar en Netlify
+    value={textoInput}
+    onChange={(e) => cambiarimagen(e.target.value)}
+  />
+  <button type="submit">Enviar</button>
+</form>
     
+      {transformarAVideo}
+
               
       </>
     );
