@@ -9,10 +9,8 @@ const [krillin , setKrillin] = useState('https://eljardindelh.netlify.app/krilli
 const [esEntradaInteractiva, setEsEntradaInteractiva] = useState(false);
 
 useEffect(() => {
-  const path = window.location.pathname;
-const ultimaParte = path.substring(path.lastIndexOf('/') + 1);
-console.log(ultimaParte);
-if(ultimaParte == 'bulma-hentai-interactivo.html') {
+  const path = window.location.href;
+  if (path.includes('bulma-hentai-interactivo')) {
     setEsEntradaInteractiva(true);
   }
 }, []);
