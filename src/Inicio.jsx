@@ -1,6 +1,8 @@
 import { useEffect, useState, useRef  } from 'react';
 import './App.css'
 import { Link,  useParams } from 'react-router-dom';
+import ContadorRegresivo from './ContadorRegresivo';
+
 
 const Inicio = () => {
      
@@ -8,12 +10,15 @@ const [androide , setAndroide] = useState('https://eljardindelh.netlify.app/es%2
 const [krillin , setKrillin] = useState('https://eljardindelh.netlify.app/krillin-quieto.gif')
 const [esEntradaInteractiva, setEsEntradaInteractiva] = useState(false);
 
+
 useEffect(() => {
   const path = window.location.href;
   if (path.includes('bulma-hentai-interactivo')) {
     setEsEntradaInteractiva(true);
   }
 }, []);
+
+
 
   const [bulma2Image, setBulma2Image] = useState('https://eljardindelh.netlify.app/bulma2.png');
   const [isBulmaVisible, setIsBulmaVisible] = useState(false); // Controlar si la imagen está visible
@@ -77,15 +82,15 @@ const bulmaHabla = () => {
 
 
   const { segmento1, segmento2, segmento3 } = useParams();
-  const slug = segmento3 || segmento2 || segmento1;
+  const slug = segmento3 || segmento2 || segmento1 
 
-  const [imagenBulma , setimagenBulma] = useState("/perfecta33.png")
+  const [imagenBulma , setimagenBulma] = useState("https://elnuevonuevojardin.netlify.app/perfecta33.png")
   const [transformarAVideo , setransformarAVideo] = useState(
         <img className='bulma2' src={imagenBulma} alt="" />)
   
   const listaDePalabrasClaves = ['follada' , 'chupando polla(video)' , 'otro' , 'follada(video)', 'futanari' , 'futanari(video)' ,'otro(video)' , 'chupando polla' ]
   
-  
+  const url = 'https://elnuevonuevojardin.netlify.app/'
   const rangosPorPalabra = {
     'follada': [21, 46],
     'follada(video)': [6, 20],
@@ -132,34 +137,34 @@ const bulmaHabla = () => {
    
   
   const transformarImagen = (palabra , palabraAleatoria ) => {
+
     if(listaDePalabrasClaves.includes(palabra)){
       const [min, max] = rangosPorPalabra[palabra];
         const numeroAleatorio = usarNumeroNoUsadoPorPalabra(palabra, min, max);
+        console.log('si incluye')
   
           videOFoto == '.mp4' ?
         setransformarAVideo(
-          <video className='bulma2' src={palabra + numeroAleatorio + videOFoto} controls></video>
+          <video className='bulma2' src={url + palabra + numeroAleatorio + videOFoto} controls></video>
         )
         :
         setransformarAVideo(
-          <img className='bulma2' src={palabra + numeroAleatorio + videOFoto} alt="" />
+          <img className='bulma2' src={ url + palabra + numeroAleatorio + videOFoto} alt="" />
         )
-      console.log(transformarAVideo)
+     
   
       return
     }
     else{
-  
-   
     const [min, max] = rangosPorPalabra[palabraAleatoria];
     const numeroAleatorio = usarNumeroNoUsadoPorPalabra(palabraAleatoria, min, max);
       videOFoto == '.mp4' ?
         setransformarAVideo(
-          <video className='bulma2' src={palabraAleatoria + numeroAleatorio + videOFoto} controls></video>
+          <video className='bulma2' src={url +palabraAleatoria + numeroAleatorio + videOFoto} controls></video>
         )
         :
         setransformarAVideo(
-          <img className='bulma2' src={palabraAleatoria + numeroAleatorio + videOFoto} alt="" />
+          <img className='bulma2' src={url +palabraAleatoria + numeroAleatorio + videOFoto} alt="" />
         )
      return
     }
@@ -195,10 +200,13 @@ const bulmaHabla = () => {
   ]
   
    
-  videOFoto == ".mp4" ?
+  if(videOFoto == ".mp4") {
     transformarImagen(palabra , palabraAleatoriaVideo )
-    :
+    console.log('va por aca (es video)')
+  }
+    else{
     transformarImagen(palabra , palabraAleatoriaSinVideo)
+    }
   }
   
   const cambiarimagen = (e) => {
@@ -212,28 +220,36 @@ const bulmaHabla = () => {
   
   
    
-  
-  const mandarForm = (e) => {
+
+  const mandarForm = async (e) => {
    e.preventDefault();
-  
-    // Guardar el prompt en Netlify Forms
-    const form = e.target;
-  
-    // Crear objeto con datos
-    const data = new FormData(form);
-  
-    fetch("/", {
-      method: "POST",
-      body: data,
-    })
-      .then(() => {
-        console.log("Prompt enviado a Netlify correctamente.");
-        setearAmbos(textoInput); // Ejecutar tu lógica de imagen
-      })
-      .catch((error) => alert(error));
+     setearAmbos(textoInput)
+  const contadorActual = Number(localStorage.getItem('contador')) || 0;
+
+  // Sumamos 1 y lo guardamos de nuevo
+  const nuevoContador = contadorActual + 1;
+  localStorage.setItem('contador', nuevoContador);
+
+  console.log('Contador actualizado:', nuevoContador);
+    try {
+      const res = await fetch('https://jardin-secreto-nbs9.onrender.com/enviar', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ mensaje: textoInput })
+      });
+
+      const texto = await res.text();
+      document.getElementById('respuesta').textContent = texto;
+    } catch {
+      document.getElementById('respuesta').textContent = 'Error al enviar.';
+    }
+
+    setTextoInput("");
   
   }
-     
+  ;
+  
+
 
 
   if (slug && !esEntradaInteractiva) {
@@ -243,6 +259,31 @@ const bulmaHabla = () => {
   );
 }
 
+  const contador = Number(localStorage.getItem('contador')) || 0;
+
+  let contenido;
+  if (contador >= 3) {
+    contenido = (
+      <>
+        <span class='parrafo'>   Se acabaron los intentos. Si querés intentos ilimitados, hacé click para donarnos algo por PayPal (¡es voluntario! DONÁ LO QUE QUIERAS y podrás usar a Bulma ilimitadamente) Sino podes esperar.
+</span>
+        <ContadorRegresivo />
+      </>
+    );
+  } else {
+    contenido = (
+      <form onSubmit={mandarForm}>
+        <input
+          placeholder="Escribí como la querés a bulma"
+          type="text"
+          value={textoInput}
+          onChange={(e) => cambiarimagen(e.target.value)}
+        />
+        <button type="submit">Enviar</button>
+      </form>
+    );
+  }
+
 
 
   if (slug && esEntradaInteractiva) {
@@ -251,33 +292,19 @@ const bulmaHabla = () => {
     return (
       <>
     
-          <form name="promptForm" netlify hidden>
-        <input type="text" name="prompt" />
-      </form>
+          
    
     <img className='ElJardinDelH' src="https://elnuevonuevojardin.netlify.app/jardin_procesado.jpg" alt="El Jardin Del H" />
 
 
 
       <h1 className='parrafo'>Bulma</h1>
-<form
-  name="promptForm"
-  method="POST"
-  data-netlify="true"
-  onSubmit={mandarForm}
->
-  <input type="hidden" name="form-name" value="promptForm" />
-  <input
-    placeholder="Escribí como la querés a bulma"
-    type="text"
-    name="prompt" // 👈 Esto es lo que se va a guardar en Netlify
-    value={textoInput}
-    onChange={(e) => cambiarimagen(e.target.value)}
-  />
-  <button type="submit">Enviar</button>
-</form>
+      {contenido}
+
+
     
       {transformarAVideo}
+
 
               
       </>
