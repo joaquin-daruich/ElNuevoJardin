@@ -3,7 +3,7 @@ import './App.css'
 import {  Route, Routes } from 'react-router-dom';
 
 import Inicio from './Inicio';
-import Vip from './vip';
+import Vip from './Vip';
 
 
 
