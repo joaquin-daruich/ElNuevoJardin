@@ -42,7 +42,7 @@ def autenticar():
 
 
 class JardinDeliciasProcessor:
-    def __init__(self, output_dir: str = "./imagenes_procesadas"):
+    def __init__(self, output_dir: str = "./public"):
         """Inicializa el procesador de imágenes.
         
         Args:
@@ -131,7 +131,7 @@ class JardinDeliciasProcessor:
             final_image.save(output_path)
             return output_path
         
-carpeta_procesadas = "./imagenes_procesadas"
+carpeta_procesadas = "./public"
 # Crear instancia del procesador
 processor = JardinDeliciasProcessor()
 
@@ -145,7 +145,7 @@ try:
 except ValueError as e:
     print(f"Error: {e}")
 
-def subir_imagenes_a_github():
+def añadirAGit2zero():
     """Sube todas las imágenes procesadas a GitHub."""
     try:
         # Agregar las imágenes al área de staging
@@ -163,186 +163,220 @@ def subir_imagenes_a_github():
         print(f"Error al ejecutar comandos de Git: {e}")
 
 
-# Ruta de tu repositorio
-def añadirAGit2zero () :
-    
-
-
-
-
-
-    # Paso 3: Añadir los archivos al control de versiones
-    subprocess.run(['git', 'add', carpeta_procesadas], check=True)
-
-    # Paso 4: Hacer el commit con un mensaje
-    subprocess.run(['git', 'commit', '-m', 'Añadir imágenes a la carpeta public'], check=True)
-
-    # Paso 5: Subir los cambios al repositorio en GitHub
-    subprocess.run(['git', 'push'], check=True)
-
-    print("¡Carpeta añadida y subida al repositorio con éxito!")
 
 añadirAGit2zero()
 
+def generarFotos():
+    numeroFoto = 146
+    bloques_html = []
+    tanda_count = 0
+    jardin_pc_count = 0
 
-# def generar_html_para_blogger():
-    
-#     """Genera el HTML basado en el diseño que proporcionaste."""
-#     html_contenido = f"""
-#     <head>
-#   <title>Yus Lopez Only Fans | El Jardín del H</title>
-#   <meta name="description" content=" solicitado por fans en Telegram. Contenido exclusivo en El Jardín del H.">
-#   <meta name="keywords" content="Hentai, anime, Yus Lopez, Dragon Ball Z, El Jardín del H, descargar hentai, hentai español,
-
-# ver hentai gratis,
-
-# hentai sin censura,
-
-# videos hentai online,
-
-# juegos hentai interactivos,
-
-# anime hentai completo,
-
-# hentai para adultos,
-
-# hentai gratis en español,
-
-# ver hentai Naruto,
-
-# ver hentai Dragon Ball,
-
-# hentai xxx anime,
-
-# hentai para celular,
-
-# hentai en HD,
-# z
-# hentai actualizado 2025,
-
-# ">
-#   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-# </head>       
-
-
-       
-#         <img class='ElJardinDelH' src=https://img1.pixhost.to/images/7236/622406855_jardin_procesado.jpg alt="El Jardin Del H" />
-#         <section class='titulos'>
-#             <h1 class='titulo1'>Only Fans COMPLETO de Yus Lopez!! POR SOLO 0,1 DLS POR PAYPAL!! </h1>
-# <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
-#   <input type="hidden" name="cmd" value="_s-xclick" />
-#   <input type="hidden" name="hosted_button_id" value="KZ64C5MUJP2PQ" />
-#   <input type="hidden" name="currency_code" value="USD" />
-#   <input type="image" src="https://img1.pixhost.to/images/7236/622419431_yus-lopez-onlyfans-1lox8-10-4.jpg" border="0" name="submit" title="PayPal es una forma segura y fácil de pagar en línea." alt="Comprar ahora" />
-# </form>
-# <video class="bulma" controls src="https://elnuevonuevojardin.netlify.app/import.mp4"></video>
-            
-#         </section>
+    while numeroFoto <= 247:
+        if numeroFoto == 242 :
         
-#        <article class='contenedorDeParrafos'>
-          
-              
+          url1 = f"https://elnuevonuevojardin.netlify.app/{numeroFoto}.mp4"
+          url2 = f"https://elnuevonuevojardin.netlify.app/{numeroFoto + 1}.mp4"  
 
-#                     <img class="bulma2" src="https://img1.pixhost.to/images/7237/622426752_yus-lopez-onlyfans-3bek7-3.png />
+          htmlFoto = f"<div class='tandas'><video src={url1} controls></video><video src={url2} controls></video></div>"
 
+          bloques_html.append(htmlFoto)
 
-                 
-#                     <img  class='bulma2'   src='https://img1.pixhost.to/images/7236/622408044_yus-lopez-onlyfans-0kvql-9.jpg' ></img>
+        url1 = f"https://elnuevonuevojardin.netlify.app/{numeroFoto}.png"
+        url2 = f"https://elnuevonuevojardin.netlify.app/{numeroFoto + 1}.png"  
 
-#                       <img  class='bulma2'   src='https://pixeldrain.com/api/file/Nq8iNAyx' ></img>
+        htmlFoto = f"<div class='tandas'><img src='{url1}' /><img src='{url2}' /></div>"
+        bloques_html.append(htmlFoto)
 
-#                         <img  class='bulma2'   src='https://pixeldrain.com/api/file/kRRVoZ2C' ></img>
-                     
-                    
-#             <img class='bulma2' src="https://pixeldrain.com/api/file/5cRYhZF7" ></img>
+        
+
+        numeroFoto += 2
+        tanda_count += 1
+
+        # Insertar jardín para PC cada 3 tandas
+        if tanda_count % 3 == 0:
+            jardin_pc = f"<div class='jardines'  ><img class='ElJardinDelH jardin-pc-{jardin_pc_count}' src='https://elnuevonuevojardin.netlify.app/jardin_procesado.jpg' alt='El Jardin Del H' /> </div>"
+            bloques_html.append(jardin_pc)
+            jardin_pc_count += 1
+
        
-#        </article>        
-#        <style>.post-body{{ 
-#   width: 100%;
-#   display: flex;
-#   flex-direction: column;
-#   align-items: center;
-#   flex-wrap: wrap;
-#   max-width: 100%;
-# }}
-# .titulos {{
-#   display: flex;
-#   flex-direction: row;
-#   flex-wrap: wrap;
-#   justify-content: space-evenly;
-#   align-items: center;
-#   width: 100%;
-#   max-width: 100vw;
-#   height: 30vh;
-#   box-sizing: border-box;
-#   gap: 1rem;
-# }}
 
-# .titulo1 {{
-#   font-size: 1.4rem;
-#   flex: 1 1 100%;
-#   text-align: center;
-#   margin: 0;
-#   padding: 0.5rem;
-# }}
-
-# .bulma {{
-#   max-height: 100%;
-#   max-width: 100%;
-#   object-fit: contain;
-#   height: 100%;
-#   box-sizing: border-box;
-# }}
-
-# .titulos form,
-# .titulos video {{
-#   height: 100%;
-#   max-height: 100%;
-#   box-sizing: border-box;
-# }}
-
-# .contenedorDeParrafos {{
-#   width: 100%;
-#   max-width: 100vw;
-#   display: flex;
-#   flex-direction: column;
-#   align-items: center;
-#   gap: 1rem;
-#   padding: 1rem 0;
-# }}
-
-# .bulma2 {{
-#   width: 100%;
-#   max-width: 100%;
-#   height: auto;
-#   object-fit: cover;
-#   display: block;
-#   image-rendering: auto;
-#   box-sizing: border-box;
-# }}
+    return "\n".join(bloques_html)
 
 
-# </style>
+def generar_html_para_blogger():
+    
+    """Genera el HTML basado en el diseño que proporcionaste."""
+    html_contenido = f"""
+    <head>
+  <title>Las putas putas De Disney Porno Rule 34 NSFW | El Jardín del H</title>
+  <meta name="description" content=" solicitado por fans en Telegram. Contenido exclusivo en El Jardín del H.">
+  <meta name="keywords" content="Hentai, anime, Yus Lopez, Dragon Ball Z, El Jardín del H, descargar hentai, hentai español,
+
+ver hentai gratis,
+
+hentai sin censura,
+
+videos hentai online,
+
+juegos hentai interactivos,
+
+anime hentai completo,
+
+hentai para adultos,
+
+hentai gratis en español,
+
+ver hentai Naruto,
+
+ver hentai Dragon Ball,
+
+hentai xxx anime,
+
+hentai para celular,
+
+hentai en HD,
+z
+hentai actualizado 2025,
+Jardin del h
+
+">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>       
+
+<img class='ElJardinDelH' src="https://elnuevonuevojardin.netlify.app/jardin_procesado.jpg" alt="El Jardin Del H" />
+
+<div class='titulos'>
+  <div class='imagen-titulos'>
+
+
+
+
+
+<form class='yus-paypal' action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+  <input type="hidden" name="cmd" value="_s-xclick" />
+  <input type="hidden" name="hosted_button_id" value="GSCXDFQL732MS" />
+  <input type="hidden" name="currency_code" value="USD" />
+  <input type="image" src="https://elnuevonuevojardin.netlify.app/disney333.png" border="0" name="submit" title="PayPal es una forma segura y fácil de pagar en línea." alt="Comprar ahora" style="height: 100%; display: block; border: none; margin: 0; padding: 0;" />
+</form>
+
+
+    
+    <h1 class='titulo3'>PACK COMPLETO DE DISNEY!!!</h1>
+    <h2 class='titulo33'>HACE CLICK PARA DESCARGAR EL PACK COMPLETO!!</h2>
+  </div>
+</div>
+
+
+
+
+<h1 class='parrafo'>Las putas putas De Disney Porno Rule 34 NSFW</h1>
+
+{generarFotos()}
+ 
+
+       <style>.post-body {{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-wrap: wrap;
+  max-width: 100%;
+}}
+
+.titulos {{
+  height: 42vh;
+  justify-content: space-between;
+}}
+
+.titulo3 {{
+  position: absolute;
+  z-index: 25;
+}}
+
+.titulo33 {{
+  position: absolute;
+  top: 30%;
+  z-index: 25;
+}}
+
+.imagen-titulos {{
+  height: 100%;
+  justify-content: space-between;
+  display: flex;
+  flex-direction: column;
+  font-size: 52%;
+}}
+
+.yus-paypal {{
+  z-index: 22;
+  position: relative;
+  right: 23%;
+  height: 100%;
+}}
+
+.tandas {{
+  display: flex;
+  width: 100vw;
+  max-width: 100vw;
+  justify-content: space-between;
+}}
+
+.jardines {{
+  display: flex;
+  width: 100vw;
+  max-width: 100vw;
+}}
+
+.tandas img {{
+  width: 40%;
+  object-fit: cover;
+  display: block;
+}}
+
+.tandas video {{
+  max-height: 80vh;
+  max-width: 100%;
+  height: auto;
+  width: auto;
+  display: block;
+}}
+
+.ElJardinDelH {{
+  width: 100%;
+  height: 500%;
+  position: absolute;
+  z-index: -1;
+}}
+
+html, body {{
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}}
+
+
+</style>
       
 
 
-# """
-#     return html_contenido
+"""
+    return html_contenido
 
-# def publicar_en_blogger(titulo, contenido_html, creds):
-#     """Publica una entrada en Blogger utilizando las credenciales OAuth."""
-#     service = build('blogger', 'v3', credentials=creds)
-#     post = {
-#         "kind": "blogger#post",
-#         "title": titulo,
-#         "content": contenido_html,
-#     }
-#     request = service.posts().insert(blogId=BLOG_ID, body=post)
-#     response = request.execute()
-#     print("Publicación realizada con éxito. URL:", response["url"])
+def publicar_en_blogger(titulo, contenido_html, creds):
+    """Publica una entrada en Blogger utilizando las credenciales OAuth."""
+    service = build('blogger', 'v3', credentials=creds)
+    post = {
+        "kind": "blogger#post",
+        "title": titulo,
+        "content": contenido_html,
+    }
+    request = service.posts().insert(blogId=BLOG_ID, body=post)
+    response = request.execute()
+    print("Publicación realizada con éxito. URL:", response["url"])
 
-# creds = autenticar()
-# html_blogger = generar_html_para_blogger()
-# publicar_en_blogger('Yus Lopez OnlyFans', html_blogger, creds)
+creds = autenticar()
+html_blogger = generar_html_para_blogger()
+publicar_en_blogger('Las Putas putas de disney', html_blogger, creds)
 
   
