@@ -52,10 +52,10 @@ const ContadorRegresivo = ({ onFinalizar }) => {
   };
 
   return (
-    <div>
-      <span className='parrafo'>Tiempo restante para volver a usar a Bulma: </span>
-      <span className='parrafo' style={{ fontSize: '2rem', fontWeight: 'bold' }}>{formatTiempo(tiempoRestante)}</span>
-    </div>
+  <>
+      <span className='parrafo-especial'> Tiempo restante para volver a usar a Bulma: </span>
+      <span className='parrafo-especial' style={{ fontSize: '2rem', fontWeight: 'bold' }}>{formatTiempo(tiempoRestante)}</span>
+</>
   );
 };
 

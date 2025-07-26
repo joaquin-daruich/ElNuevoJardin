@@ -265,9 +265,59 @@ const bulmaHabla = () => {
   if (contador >= 3) {
     contenido = (
       <>
-        <span class='parrafo'>   Se acabaron los intentos. Si querés intentos ilimitados, hacé click para donarnos algo por PayPal (¡es voluntario! DONÁ LO QUE QUIERAS y podrás usar a Bulma ilimitadamente) Sino podes esperar.
+        
+<form className='bulma33-paypal' action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+  <input type="hidden" name="cmd" value="_s-xclick" />
+  <input type="hidden" name="hosted_button_id" value="DPH8YYC5WFFUW" />
+  <input type="hidden" name="currency_code" value="USD" />
+  
+  <div className='contenedor-especiales'>
+    <span className='parrafo-especial'>   Se acabaron los intentos. Si querés intentos ilimitados, hacé click en el video de Bulma para donarnos algo por PayPal (¡es voluntario! DONÁ LO QUE QUIERAS y podrás usar a Bulma ilimitadamente) Sino podes esperar.
 </span>
+
         <ContadorRegresivo />
+</div>
+<form
+  action="https://www.paypal.com/cgi-bin/webscr"
+  method="post"
+  target="_top"
+  className="form-video-paypal"
+>
+  <input type="hidden" name="cmd" value="_s-xclick" />
+  <input type="hidden" name="hosted_button_id" value="DPH8YYC5WFFUW" />
+  <input type="hidden" name="currency_code" value="USD" />
+
+  {/* VIDEO en vez de imagen */}
+  <video
+    className="bulma-refer"
+    src="https://elnuevonuevojardin.netlify.app/peipal.mp4"
+    autoPlay
+    loop
+    muted
+    playsInline
+  />
+
+
+
+  {/* Botón invisible que ocupa todo el contenedor */}
+  <button
+    type="submit"
+    style={{
+      position: 'absolute',
+      inset: 0,
+      width: '100%',
+      height: '100%',
+      opacity: 0,
+      border: 'none',
+      cursor: 'pointer',
+      zIndex: 3
+    }}
+  ></button>
+</form>
+
+
+</form>
+
       </>
     );
   } else {
@@ -298,9 +348,7 @@ const bulmaHabla = () => {
 
 
 
-      <h1 className='parrafo'>Bulma</h1>
       {contenido}
-
 
     
       {transformarAVideo}

@@ -467,3 +467,117 @@ html, body {
   padding: 0;
   overflow-x: hidden;
 }
+
+
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  margin-top: 40px;
+  padding: 0 5%;
+}
+
+input[type="text"] {
+  width: 95vw;
+  max-width: 700px;
+  padding: 16px 24px;
+  font-size: 18px;
+  border: 2px solid rgba(255, 255, 255, 0.25);
+  border-radius: 14px;
+  background: rgba(0, 0, 0, 0.45);
+  color: #fff;
+  backdrop-filter: blur(6px);
+  outline: none;
+  transition: border 0.3s, box-shadow 0.3s;
+}
+
+input[type="text"]::placeholder {
+  color: rgba(255, 255, 255, 0.75);
+  text-shadow: 0 0 4px rgba(0, 0, 0, 0.6);
+  font-size: 16px;
+  justify-content: center;
+}
+
+input[type="text"]:focus {
+  border-color: #ff66cc;
+  box-shadow: 0 0 10px #ff66cc88;
+}
+
+button[type="submit"] {
+  padding: 14px 28px;
+  font-size: 18px;
+  background-color: #ff66cc;
+  color: white;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.2s;
+}
+
+button[type="submit"]:hover {
+  background-color: #ff85d0;
+  transform: scale(1.05);
+}
+
+button[type="submit"]:active {
+  transform: scale(0.97);
+}
+
+
+.bulma33-paypal{
+  display: flex;
+  justify-content: space-evenly;
+  flex-direction: column;
+  max-width: 100%;
+  width: 100%;
+}
+
+.bulma-refer {
+  position: absolute;
+  z-index: 1; /* suficientemente arriba para recibir clics */
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  object-fit: cover;
+  cursor: pointer;
+  border: none;
+}
+
+
+.parrafo-especial {
+    z-index: 24;
+  flex-wrap: wrap;
+  position: relative;
+  z-index: 3;
+  font-size: 25px;
+  font-family: "Almendra", serif;
+  font-weight: 900;
+  font-style: italic;
+  color: #ffffff;
+  -webkit-background-clip: text;
+  background-clip: text;
+  text-shadow: 
+  2px 2px 5px rgba(0, 0, 255, 0.8), 
+  -2px -2px 5px rgba(0, 0, 255, 0.8), 
+  2px -2px 5px rgba(0, 0, 255, 0.8),
+  -2px 2px 5px rgba(0, 0, 255, 0.8);
+}
+
+
+.contenedor-especiales{
+  z-index: 24;
+  position: absolute;
+  top: 5vh;
+  width: 95%;
+}
+
+
+
+.ElJardinDelH {
+  width: 100%;
+  height: 500%;
+  position: absolute;
+  z-index: -1;
+}
