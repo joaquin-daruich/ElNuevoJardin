@@ -2,9 +2,11 @@ import { useEffect, useState, useRef  } from 'react';
 import './App.css'
 import { Link,  useParams } from 'react-router-dom';
 import ContadorRegresivo from './ContadorRegresivo';
+import Catalogo from './Catalogo';
 
 
 const Inicio = () => {
+  
      
 const [androide , setAndroide] = useState('https://eljardindelh.netlify.app/es%20esta.png')
 const [krillin , setKrillin] = useState('https://eljardindelh.netlify.app/krillin-quieto.gif')
@@ -17,6 +19,18 @@ useEffect(() => {
     setEsEntradaInteractiva(true);
   }
 }, []);
+
+
+const [esCatalogo, setEsCatalogo] = useState(false);
+
+
+useEffect(() => {
+  const path = window.location.href;
+  if (path.includes('catalogo')) {
+    setEsCatalogo(true);
+  }
+}, []);
+
 
 
 
@@ -89,6 +103,8 @@ const bulmaHabla = () => {
         <img className='bulma2' src={imagenBulma} alt="" />)
   
   const listaDePalabrasClaves = ['follada' , 'chupando polla(video)' , 'otro' , 'follada(video)', 'futanari' , 'futanari(video)' ,'otro(video)' , 'chupando polla' ]
+  
+  
   
   const url = 'https://elnuevonuevojardin.netlify.app/'
   const rangosPorPalabra = {
@@ -251,9 +267,20 @@ const bulmaHabla = () => {
   
 
 
+   if (slug && esCatalogo) {
+    
+return(
+      <Catalogo></Catalogo>
+  );
+
+
+}
 
   if (slug && !esEntradaInteractiva) {
+    console.log(slug)
+    
   return (
+    
     <>
     </>
   );
@@ -265,7 +292,6 @@ const bulmaHabla = () => {
   if (contador >= 3) {
     contenido = (
       <>
-        
 <form className='bulma33-paypal' action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
   <input type="hidden" name="cmd" value="_s-xclick" />
   <input type="hidden" name="hosted_button_id" value="DPH8YYC5WFFUW" />
@@ -340,9 +366,10 @@ const bulmaHabla = () => {
 
 
     return (
+      
       <>
     
-          
+          {console.log(slug)}
    
     <img className='ElJardinDelH' src="https://elnuevonuevojardin.netlify.app/jardin_procesado.jpg" alt="El Jardin Del H" />
 
@@ -360,9 +387,22 @@ const bulmaHabla = () => {
   }
 
 
+  
+  
+  
+  
+  
+  
+  
+   
+
+
   else {
+    console.log('hola')
     return (
           <>
+          
+        {console.log('hola')}
     <div className='inicio'>
       <span>Te dejo un link para ver el video!, leyendo un poco la pagina te cuento un poco de que trata el video :) Tambien si queres hace click en Krillin y mira a 18 ;)  </span>
       {<Link to={'https://gofile.io/d/BfUUAD'}>👉 Click aquí para ver el video!!Link directo sin publicidad!!!

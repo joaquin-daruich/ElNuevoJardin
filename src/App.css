@@ -27,7 +27,7 @@
   display: flex;
   color: aliceblue;
   z-index: 33;
-  background-image: url(/3.jpg);
+  background-image: url(/003.jpg);
 }
 
 
@@ -574,6 +574,82 @@ button[type="submit"]:active {
 }
 
 
+
+.ElJardinDelH {
+  width: 100%;
+  height: 500%;
+  position: absolute;
+  z-index: -1;
+}
+
+
+.presentacion{
+  width: 100%;
+  height: 33%;
+  justify-content: space-around;
+  flex-direction: row;
+}
+
+.catalogos{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 5vh;
+}
+
+.anime{
+ 
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.animes{
+  display: flex;
+  flex-direction: column;
+  width: 30%;
+}
+
+.parrafo-presentacion {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  top: 4vh;
+  font-size: 25px;
+  font-family: "Almendra", serif;
+  font-weight: 900;
+  font-style: italic;
+  color: #1aff06;
+  -webkit-background-clip: text;
+  background-clip: text;
+  text-shadow: 
+  2px 2px 5px rgba(0, 0, 255, 0.8), 
+  -2px -2px 5px rgba(0, 0, 255, 0.8), 
+  2px -2px 5px rgba(0, 0, 255, 0.8),
+  -2px 2px 5px rgba(0, 0, 255, 0.8);
+}
+
+.parrafo-titulos{
+
+  flex-wrap: wrap;
+
+  font-size: 33px;
+  font-family: "Almendra", serif;
+  font-weight: 1900;
+  font-style: italic;
+  color: #fffb06;
+  -webkit-background-clip: text;
+  background-clip: text;
+  text-shadow: 
+  2px 2px 5px rgba(0, 0, 255, 0.8), 
+  -2px -2px 5px rgba(0, 0, 255, 0.8), 
+  2px -2px 5px rgba(0, 0, 255, 0.8),
+  -2px 2px 5px rgba(0, 0, 255, 0.8);
+}
 
 .ElJardinDelH {
   width: 100%;
